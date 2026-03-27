@@ -18,7 +18,7 @@ if any(~isfinite(so3mat(:)))
 end
 
 % ----- check skey-symmetric -----
-tol = 1e-8;
+tol = getTol();
 if norm(so3mat + transpose(so3mat), 'fro') > tol
     error('so3ToVec:NotSkewSymmetric', 'Input matrix must be skew-symmetric within tolerance %.1e', tol);
 end

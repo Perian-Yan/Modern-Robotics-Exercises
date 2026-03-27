@@ -3,7 +3,7 @@ function R = MatrixExp3(so3mat)
 % R = e^([w_hat]*theta)
 % Using the Rodrigues' rotation formula.   
 
-expc3 = so3ToVec(so3mat);
+expc3 = so3ToVec(so3mat);  % also check that the input is skew-symmetric
 [omghat, theta] = AxisAng3(expc3);
 if theta == 0  % very small angle theta is set as 0 in AxisAng3.
     R = eye(3);

@@ -19,7 +19,7 @@ if ~isnumeric(expc6) || ~isreal(expc6)
 end
 
 
-tol = 1e-8;
+tol = getTol();
 if norm(expc6) < tol
     warning('AxisAngle6:SmallAngle', ...
         'The expc6 represents no motion, screw axis is undefined (set to zero).');

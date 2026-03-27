@@ -20,7 +20,7 @@ end
 
 theta = norm(expc3);
 
-tol = 1e-8;
+tol = getTol();
 if theta < tol
     omghat = [0;0;0];
     theta = 0;

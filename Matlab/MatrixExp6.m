@@ -4,17 +4,21 @@ function T = MatrixExp6(se3mat)
 % T = e^([S]theta) 
 S_theta = se3ToVec(se3mat);
 omg = S_theta(1:3);
-if norm(omg) ~= 0
+
+tol = getTol();
+if norm(omg) > tol  % w is not all zero, rotation + translation
     
-    so3mat = VecToso3(omg);
-    [omghat, theta] = AxisAng3(omg);
+    so3mat = se3mat(1:3, 1:3);
+    [~, theta] = AxisAng3(omg);
     v = S_theta(4:6) / theta;
-    omghat_mat = VecToso3(omghat);
+    omghat_mat = so3mat / theta;
     G = theta*eye(3) + (1-cos(theta))*omghat_mat + (theta-sin(theta))*omghat_mat^2;
     T = RpToTrans(MatrixExp3(so3mat), G*v);
-else
+
+else  % omg is all zero, pure translation
     theta = norm(S_theta(4:6));
     v = S_theta(4:6) / theta;
     T = RpToTrans(eye(3), v*theta);
 end
+
 end

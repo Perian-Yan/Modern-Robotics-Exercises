@@ -8,6 +8,7 @@ end
 isRotationMatrix(R);
 
 acosinput = (trace(R) - 1) / 2;
+tol = getTol();
 
 if acosinput >= 1
     so3mat = zeros(3,3);
