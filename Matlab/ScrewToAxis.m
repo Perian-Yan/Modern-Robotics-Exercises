@@ -10,7 +10,7 @@ if ~all(cellfun(@(x) numel(x)==3, {s, q}))
      error('ScrewToAxis:InvalidDimension', 'q, s must be 3-dimensitional.');
 end
 
-if any(cellfun(@(x) any(~isfinite(x)), {s, q}))
+if any(cellfun(@(x) any(~isfinite(x(:))), {s, q}))
      error('ScrewToAxis:NonInfiniteInput', 'q, s must be finite.');
 end
 
